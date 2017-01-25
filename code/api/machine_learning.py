@@ -32,5 +32,6 @@ def get_random_forest_model(data, labels, type = "classifier", test_size=0.25, r
     model = train_random_forest(X_train, y_train, type=type, param_grid=None)
     return model
 
+
 def get_random_forest_predict(model,X_test):
     return model.predict(X_test)
