@@ -1,7 +1,6 @@
 import pandas as pd
 import matplotlib.pylab as plt
 import sklearn
-import keras
 
 import datetime
 import numpy as np
