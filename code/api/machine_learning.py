@@ -1,11 +1,4 @@
-import pandas as pd
-import matplotlib.pylab as plt
-import sklearn
-import keras
-
-import datetime
 import numpy as np
-import pandas as pd
 
 
 from sklearn.model_selection import train_test_split
@@ -36,7 +29,7 @@ def get_random_forest_model(data, labels, type = "classifier", test_size=0.25, r
         'n_estimators': np.arange(100, 1100, 100)
     }
     X_train, X_test, y_train, y_test = train_test_split(data, labels, test_size=test_size, random_state=random_state)
-    model = train_random_forest(X_train, y_train, type=type, param_grid=param_grid)
+    model = train_random_forest(X_train, y_train, type=type, param_grid=None)
     return model
 
 def get_random_forest_predict(model,X_test):
