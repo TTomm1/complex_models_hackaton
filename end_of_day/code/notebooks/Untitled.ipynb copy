@@ -1,0 +1,297 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'/Users/stephengalsworthy/python/tutorials/ds-complex-models'"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "% pwd\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "data = pd.read_csv('train_set.csv')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>label</th>\n",
+       "      <th>approx_payout_date</th>\n",
+       "      <th>body_length</th>\n",
+       "      <th>channels</th>\n",
+       "      <th>country</th>\n",
+       "      <th>currency</th>\n",
+       "      <th>delivery_method</th>\n",
+       "      <th>description</th>\n",
+       "      <th>email_domain</th>\n",
+       "      <th>event_created</th>\n",
+       "      <th>...</th>\n",
+       "      <th>user_age</th>\n",
+       "      <th>user_created</th>\n",
+       "      <th>user_type</th>\n",
+       "      <th>venue_address</th>\n",
+       "      <th>venue_country</th>\n",
+       "      <th>venue_latitude</th>\n",
+       "      <th>venue_longitude</th>\n",
+       "      <th>venue_name</th>\n",
+       "      <th>venue_state</th>\n",
+       "      <th>sample_uuid</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>False</td>\n",
+       "      <td>1320397200</td>\n",
+       "      <td>2113</td>\n",
+       "      <td>0</td>\n",
+       "      <td>US</td>\n",
+       "      <td>USD</td>\n",
+       "      <td>1.0</td>\n",
+       "      <td>&lt;p&gt;It's time to get your kink on for Halloween...</td>\n",
+       "      <td>gmail.com</td>\n",
+       "      <td>1317831221</td>\n",
+       "      <td>...</td>\n",
+       "      <td>338</td>\n",
+       "      <td>1288650682</td>\n",
+       "      <td>4</td>\n",
+       "      <td>76 Union Place</td>\n",
+       "      <td>US</td>\n",
+       "      <td>41.769424</td>\n",
+       "      <td>-72.681180</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>37d2e927-6060-4d36-b3d1-c2d2d1051827</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>False</td>\n",
+       "      <td>1367533800</td>\n",
+       "      <td>278</td>\n",
+       "      <td>12</td>\n",
+       "      <td>US</td>\n",
+       "      <td>USD</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>&lt;p&gt;The opera that conquered London in Handel&amp;r...</td>\n",
+       "      <td>murdocktheatre.com</td>\n",
+       "      <td>1349762265</td>\n",
+       "      <td>...</td>\n",
+       "      <td>423</td>\n",
+       "      <td>1313162870</td>\n",
+       "      <td>3</td>\n",
+       "      <td>536 N Broadway St</td>\n",
+       "      <td>US</td>\n",
+       "      <td>37.694706</td>\n",
+       "      <td>-97.335055</td>\n",
+       "      <td>Murdock Theatre</td>\n",
+       "      <td>KS</td>\n",
+       "      <td>eddc4b10-5066-4224-b970-90b4acd8ee0c</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>False</td>\n",
+       "      <td>1367991000</td>\n",
+       "      <td>1077</td>\n",
+       "      <td>0</td>\n",
+       "      <td>AU</td>\n",
+       "      <td>AUD</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>&lt;p class=\"MsoNormal\"&gt;&lt;span style=\"font-family:...</td>\n",
+       "      <td>loc.com.au</td>\n",
+       "      <td>1363251138</td>\n",
+       "      <td>...</td>\n",
+       "      <td>820</td>\n",
+       "      <td>1292467300</td>\n",
+       "      <td>3</td>\n",
+       "      <td>154 Brougham st Kings Cross</td>\n",
+       "      <td>AU</td>\n",
+       "      <td>-33.874762</td>\n",
+       "      <td>151.221483</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>662f904b-5bc8-4b88-b5b2-4cbf3253a579</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>False</td>\n",
+       "      <td>1298275200</td>\n",
+       "      <td>396</td>\n",
+       "      <td>6</td>\n",
+       "      <td>AU</td>\n",
+       "      <td>AUD</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>&lt;p&gt;We will be celebrating a few birthday's thi...</td>\n",
+       "      <td>gmail.com</td>\n",
+       "      <td>1296473165</td>\n",
+       "      <td>...</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1296446498</td>\n",
+       "      <td>1</td>\n",
+       "      <td>Albert Lane</td>\n",
+       "      <td>AU</td>\n",
+       "      <td>-27.468097</td>\n",
+       "      <td>153.023772</td>\n",
+       "      <td>Vapiano Restaurant</td>\n",
+       "      <td>Queensland</td>\n",
+       "      <td>a57bed27-03ae-4ea1-bae6-17e4657e545c</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>False</td>\n",
+       "      <td>1370592000</td>\n",
+       "      <td>145</td>\n",
+       "      <td>5</td>\n",
+       "      <td>US</td>\n",
+       "      <td>USD</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>&lt;p&gt;Go to Early Bird Special tickets at: &lt;a</td>\n",
+       "      <td>yahoo.com</td>\n",
+       "      <td>1330794867</td>\n",
+       "      <td>...</td>\n",
+       "      <td>70</td>\n",
+       "      <td>1324725369</td>\n",
+       "      <td>3</td>\n",
+       "      <td>1550 Wilson Boulevard</td>\n",
+       "      <td>US</td>\n",
+       "      <td>38.894180</td>\n",
+       "      <td>-77.076237</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>VA</td>\n",
+       "      <td>6eebc8aa-8209-4568-b9ad-f9351cf328e1</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>5 rows × 45 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   label  approx_payout_date  body_length  channels country currency  \\\n",
+       "0  False          1320397200         2113         0      US      USD   \n",
+       "1  False          1367533800          278        12      US      USD   \n",
+       "2  False          1367991000         1077         0      AU      AUD   \n",
+       "3  False          1298275200          396         6      AU      AUD   \n",
+       "4  False          1370592000          145         5      US      USD   \n",
+       "\n",
+       "   delivery_method                                        description  \\\n",
+       "0              1.0  <p>It's time to get your kink on for Halloween...   \n",
+       "1              0.0  <p>The opera that conquered London in Handel&r...   \n",
+       "2              0.0  <p class=\"MsoNormal\"><span style=\"font-family:...   \n",
+       "3              0.0  <p>We will be celebrating a few birthday's thi...   \n",
+       "4              0.0        <p>Go to Early Bird Special tickets at: <a    \n",
+       "\n",
+       "         email_domain  event_created                  ...                   \\\n",
+       "0           gmail.com     1317831221                  ...                    \n",
+       "1  murdocktheatre.com     1349762265                  ...                    \n",
+       "2          loc.com.au     1363251138                  ...                    \n",
+       "3           gmail.com     1296473165                  ...                    \n",
+       "4           yahoo.com     1330794867                  ...                    \n",
+       "\n",
+       "   user_age  user_created  user_type                venue_address  \\\n",
+       "0       338    1288650682          4               76 Union Place   \n",
+       "1       423    1313162870          3            536 N Broadway St   \n",
+       "2       820    1292467300          3  154 Brougham st Kings Cross   \n",
+       "3         1    1296446498          1                  Albert Lane   \n",
+       "4        70    1324725369          3        1550 Wilson Boulevard   \n",
+       "\n",
+       "   venue_country  venue_latitude  venue_longitude          venue_name  \\\n",
+       "0             US       41.769424       -72.681180                 NaN   \n",
+       "1             US       37.694706       -97.335055     Murdock Theatre   \n",
+       "2             AU      -33.874762       151.221483                 NaN   \n",
+       "3             AU      -27.468097       153.023772  Vapiano Restaurant   \n",
+       "4             US       38.894180       -77.076237                 NaN   \n",
+       "\n",
+       "  venue_state                           sample_uuid  \n",
+       "0         NaN  37d2e927-6060-4d36-b3d1-c2d2d1051827  \n",
+       "1          KS  eddc4b10-5066-4224-b970-90b4acd8ee0c  \n",
+       "2         NaN  662f904b-5bc8-4b88-b5b2-4cbf3253a579  \n",
+       "3  Queensland  a57bed27-03ae-4ea1-bae6-17e4657e545c  \n",
+       "4          VA  6eebc8aa-8209-4568-b9ad-f9351cf328e1  \n",
+       "\n",
+       "[5 rows x 45 columns]"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.5.1"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 0
+}

@@ -42,7 +42,7 @@ class Predict(Resource):
         args = post_parser.parse_args()
 
 
-        output = ml.get_random_forest_predict(model, args)
+        output = ml.get_random_forest_predict(model, args)[0]
 
         if output:
             label=1.
