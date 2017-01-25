@@ -23,8 +23,10 @@ def train_random_forest(X_train, y_train, type="classifier", param_grid=None):
         rf = RandomForestRegressor(random_state=7)
 
     if param_grid != None:
+        print(type)
         grid = GridSearchCV(rf, param_grid, n_jobs=-1).fit(X_train, y_train)
-
+    else:
+        return rf.fit(X_train,y_train)
     return grid
 
 
